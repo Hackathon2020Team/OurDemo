@@ -1,27 +1,6 @@
 <template>
     <div class="graph-container">
-        <div class="menu-container">
-            <el-col >
-                <el-menu default-active="2" class="el-menu-vertical-demo" >
-                    <el-submenu index="1">
-                        <template slot="title">
-                            <span :span="4">导航1</span>
-                        </template>
-                        <el-menu-item-group>
-                            <el-menu-item index="1-1">选项1</el-menu-item>
-                            <el-menu-item index="1-2">选项2</el-menu-item>
-                            <el-menu-item v-for="i in task_data" :key="task_data.key">{{task_data.out}}</el-menu-item>
-                        </el-menu-item-group>
-                    </el-submenu>
-                    <el-submenu index="2">
-                        <template slot="title">
-                            <span>导航2</span>
-                        </template>
-                    </el-submenu>
-                </el-menu>
-            </el-col>
 
-        </div>
 
         <div id="myChart" :style="{width: '80%', height: '400%'}"></div>
         <div class="button-container">
