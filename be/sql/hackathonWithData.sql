@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : MyServer
+ Source Server         : MyComputer
  Source Server Type    : MySQL
- Source Server Version : 50731
- Source Host           : 47.93.252.112:3306
+ Source Server Version : 50725
+ Source Host           : localhost:3306
  Source Schema         : hackathon
 
  Target Server Type    : MySQL
- Target Server Version : 50731
+ Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 27/11/2020 23:39:30
+ Date: 29/11/2020 03:44:22
 */
 
 SET NAMES utf8mb4;
@@ -34,13 +34,12 @@ CREATE TABLE `administertask`  (
   `finishTime` datetime(0) NULL DEFAULT NULL,
   `personTaskStatus` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`administerTaskId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of administertask
 -- ----------------------------
-INSERT INTO `administertask` VALUES (1, 1, 1, '认真打扫宿舍卫生', NULL, NULL, '2020-11-27 23:33:47', NULL, NULL, '2020-11-27 23:33:24', 'NOT_RECEIVE');
-INSERT INTO `administertask` VALUES (2, 2, 2, '认真打扫宿舍天空卫生', NULL, NULL, '2020-11-27 23:33:47', NULL, NULL, '2020-11-27 23:33:24', 'NOT_RECEIVE');
+INSERT INTO `administertask` VALUES (1, 1, 1, '打扫宿舍卫生', NULL, NULL, '2020-11-29 03:40:27', NULL, NULL, '2020-11-29 03:42:44', 'FINISHED');
 
 -- ----------------------------
 -- Table structure for department
@@ -53,14 +52,15 @@ CREATE TABLE `department`  (
   `level` int(11) NULL DEFAULT NULL,
   `higherId` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`departmentId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of department
 -- ----------------------------
-INSERT INTO `department` VALUES (1, 1, '舍长大人', 1, -1);
-INSERT INTO `department` VALUES (2, 1, '副舍长大人', 2, 1);
+INSERT INTO `department` VALUES (1, 1, '舍长', 1, -1);
+INSERT INTO `department` VALUES (2, 1, '副舍长', 2, 1);
 INSERT INTO `department` VALUES (3, 1, '舍员', 3, 2);
+INSERT INTO `department` VALUES (4, 1, '舍员的儿子', 4, 3);
 
 -- ----------------------------
 -- Table structure for dotask
@@ -80,13 +80,12 @@ CREATE TABLE `dotask`  (
   `finishTime` datetime(0) NULL DEFAULT NULL,
   `personTaskStatus` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`doTaskId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dotask
 -- ----------------------------
-INSERT INTO `dotask` VALUES (1, 1, 2, '打扫天空', '我接受打扫天空', NULL, NULL, '2020-11-27 23:35:43', NULL, '2020-11-27 23:36:51', '1970-01-01 08:00:00', 'EXECUTING');
-INSERT INTO `dotask` VALUES (2, 1, 3, '打扫地板', NULL, NULL, NULL, '2020-11-27 23:35:53', NULL, NULL, '1970-01-01 08:00:00', 'NOT_RECEIVE');
+INSERT INTO `dotask` VALUES (1, 1, 2, '打扫天空卫生', '打扫天空', '天空真干净', '我打扫好了我天空的卫生', '2020-11-29 03:40:59', '2020-11-29 03:42:44', '2020-11-29 03:41:44', '1970-01-01 08:00:00', 'FINISHED');
 
 -- ----------------------------
 -- Table structure for organization
@@ -103,7 +102,7 @@ CREATE TABLE `organization`  (
 -- ----------------------------
 -- Records of organization
 -- ----------------------------
-INSERT INTO `organization` VALUES (1, 1, '万峰帝国', '2020-11-27 23:29:28');
+INSERT INTO `organization` VALUES (1, 1, '陶二421', '2020-11-29 03:37:24');
 
 -- ----------------------------
 -- Table structure for statuslog
@@ -135,13 +134,12 @@ CREATE TABLE `task`  (
   `deadLine` datetime(0) NULL DEFAULT NULL,
   `endTime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`taskId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of task
 -- ----------------------------
-INSERT INTO `task` VALUES (1, -1, 1, 1, '打扫卫生', '认真打扫宿舍卫生', 'EXECUTING', '2020-11-27 23:33:47', '2020-11-27 23:33:24', NULL);
-INSERT INTO `task` VALUES (2, 1, 1, 1, '打扫天空卫生', '认真打扫天空卫生', 'RELEASE', '2020-11-27 23:33:47', '2020-11-27 23:33:24', NULL);
+INSERT INTO `task` VALUES (1, -1, 1, 1, '打扫宿舍卫生', '打扫宿舍卫生', 'FINISHED', '2020-11-29 03:40:27', '1970-01-01 08:00:00', '2020-11-29 03:42:56');
 
 -- ----------------------------
 -- Table structure for user
@@ -159,15 +157,16 @@ CREATE TABLE `user`  (
   `departmentId` int(11) NULL DEFAULT NULL,
   `organizationId` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'wwf', '王万峰', '4QrcOUm6Wau+VuBX8g+IPg==', '2020-11-27 23:29:29', '2020-11-27 23:30:00', '舍长', 'https://twitter-content.oss-cn-shanghai.aliyuncs.com/1.jpg', 1, 1);
-INSERT INTO `user` VALUES (2, 'zhy', '张洪胤', '4QrcOUm6Wau+VuBX8g+IPg==', '2020-11-27 23:31:48', '2020-11-27 23:36:03', '张洪胤', 'https://twitter-content.oss-cn-shanghai.aliyuncs.com/1.jpg', 2, 1);
-INSERT INTO `user` VALUES (3, 'zr', '朱睿', '4QrcOUm6Wau+VuBX8g+IPg==', '2020-11-27 23:32:01', '2020-11-27 23:32:01', 'zr', 'https://twitter-content.oss-cn-shanghai.aliyuncs.com/1.jpg', 2, 1);
-INSERT INTO `user` VALUES (4, 'xiaosu1', '小苏儿子一号', '4QrcOUm6Wau+VuBX8g+IPg==', '2020-11-27 23:32:25', '2020-11-27 23:32:25', 'xiaosu1', 'https://twitter-content.oss-cn-shanghai.aliyuncs.com/1.jpg', 3, 1);
-INSERT INTO `user` VALUES (5, 'xiaosu2', '小苏儿子二号', '4QrcOUm6Wau+VuBX8g+IPg==', '2020-11-27 23:32:33', '2020-11-27 23:32:33', 'xiaosu2', 'https://twitter-content.oss-cn-shanghai.aliyuncs.com/1.jpg', 3, 1);
+INSERT INTO `user` VALUES (1, 'wwf', '王万峰', '4QrcOUm6Wau+VuBX8g+IPg==', '2020-11-29 03:37:24', '2020-11-29 03:42:24', '王万峰的介绍', 'https://twitter-content.oss-cn-shanghai.aliyuncs.com/1.jpg', 1, 1);
+INSERT INTO `user` VALUES (2, 'zr', '朱睿', '4QrcOUm6Wau+VuBX8g+IPg==', '2020-11-29 03:39:09', '2020-11-29 03:41:09', '朱睿的介绍', 'https://twitter-content.oss-cn-shanghai.aliyuncs.com/1.jpg', 2, 1);
+INSERT INTO `user` VALUES (3, 'zhy', '张洪胤', '4QrcOUm6Wau+VuBX8g+IPg==', '2020-11-29 03:39:21', '2020-11-29 03:39:21', '张洪胤的介绍', 'https://twitter-content.oss-cn-shanghai.aliyuncs.com/1.jpg', 2, 1);
+INSERT INTO `user` VALUES (4, 'xiaosu1', '小苏1', '4QrcOUm6Wau+VuBX8g+IPg==', '2020-11-29 03:39:33', '2020-11-29 03:39:33', '小苏1的介绍', 'https://twitter-content.oss-cn-shanghai.aliyuncs.com/1.jpg', 3, 1);
+INSERT INTO `user` VALUES (5, 'xiaosu2', '小苏2', '4QrcOUm6Wau+VuBX8g+IPg==', '2020-11-29 03:39:40', '2020-11-29 03:39:40', '小苏2的介绍', 'https://twitter-content.oss-cn-shanghai.aliyuncs.com/1.jpg', 3, 1);
+INSERT INTO `user` VALUES (6, 'xiaosu3', '小苏3', '4QrcOUm6Wau+VuBX8g+IPg==', '2020-11-29 03:39:55', '2020-11-29 03:39:55', '小苏3的介绍', 'https://twitter-content.oss-cn-shanghai.aliyuncs.com/1.jpg', 4, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

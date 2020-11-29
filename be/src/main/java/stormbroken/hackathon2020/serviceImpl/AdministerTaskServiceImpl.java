@@ -37,7 +37,7 @@ public class AdministerTaskServiceImpl implements AdministerTaskService {
 
     private static String ADD_SUCCESS = "添加管理任务成功";
     private static String ADD_FAIL = "添加管理任务失败";
-    private static String NOT_FIND = "没有找到这个任务";
+    private static String NOT_FIND = "没有找到管理任务";
     private static String NO_PRIVILEGE = "没有权限进行操作";
     private static String ADD_STATUS_FAIL = "任务状态无法添加";
     private static String NOT_LOWER = "不是给直属下级分配任务";
@@ -280,7 +280,6 @@ public class AdministerTaskServiceImpl implements AdministerTaskService {
             administerTask = administerTaskMapper.findByTaskAndUserId(taskId, userId);
         }catch (Exception e){
             e.printStackTrace();
-            return null;
         }
         return administerTask;
     }
