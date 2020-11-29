@@ -50,8 +50,7 @@
         password: '',
         content: '',
         url: '',
-        msg: 'Welcome to Login Demo!',
-        msg2: 'Welcome to Register Demo!',
+        msg: 'Welcome to Tasker!',
         login_data: {}
       }
     },
